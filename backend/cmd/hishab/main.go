@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"hishab.com/main/config"
+	"hishab.com/main/controllers"
 )
 
 func main() {
@@ -10,10 +11,11 @@ func main() {
 	config.ConnectDatabase()
 
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run()
+
+	userGroup := r.Group("/user")
+	{
+		userGroup.POST("/register", controllers.Register)
+	}
+
+	r.Run(":8080")
 }
