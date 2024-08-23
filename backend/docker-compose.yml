@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: hishab_db
+    environment:
+      POSTGRES_USER: adib
+      POSTGRES_PASSWORD: mysecret_hishab_db_password
+      POSTGRES_DB: hishabdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+volumes:
+  postgres_data:
