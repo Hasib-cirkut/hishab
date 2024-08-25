@@ -15,6 +15,7 @@ func main() {
 	userGroup := r.Group("/user")
 	{
 		userGroup.POST("/register", controllers.Register)
+		userGroup.POST("/login", controllers.Login)
 	}
 
 	r.Run(":8080")
