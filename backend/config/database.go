@@ -8,6 +8,7 @@ import (
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"hishab.com/main/models"
 )
 
 var DB *gorm.DB
@@ -34,7 +35,12 @@ func ConnectDatabase() {
 		log.Fatalf("Failed to connect to database: %v\n", err)
 	}
 
+	db.AutoMigrate(&models.User{}, &models.Category{}, &models.Transaction{})
+
 	fmt.Print("Database connected")
 
 	DB = db
+
+	// initialize categories if they haven't
+	models.InsertDefaultCategories(db)
 }
