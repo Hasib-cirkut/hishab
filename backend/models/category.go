@@ -4,9 +4,12 @@ import "gorm.io/gorm"
 
 type Category struct {
 	ID   uint   `gorm:"primaryKey"`
-	Name string `gorm:"unique;not null"`
+	Name string `gorm:"not null"`
 	Type string `gorm:"not null"`
 }
+
+const EARNING = "earning"
+const EXPENDITURE = "expenditure"
 
 func InsertDefaultCategories(db *gorm.DB) {
 	categories := []Category{

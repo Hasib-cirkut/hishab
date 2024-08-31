@@ -18,5 +18,11 @@ func main() {
 		userGroup.POST("/login", controllers.Login)
 	}
 
+	categoryGroup := r.Group("/category")
+	{
+		categoryGroup.GET("/", controllers.FetchAllCategory)
+		categoryGroup.POST("/", controllers.AddCategory)
+	}
+
 	r.Run(":8080")
 }
